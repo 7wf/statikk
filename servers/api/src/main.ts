@@ -1,13 +1,13 @@
 import fastify from 'fastify'
 
-import setupRoutes from './routes'
+import routes from './routes'
 
 /**
  * Creates an application.
  */
 export default function createApplication() {
     const application = fastify()
-    setupRoutes(application)
+    application.register(routes)
 
     return application
 }
