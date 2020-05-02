@@ -1,7 +1,7 @@
 import fastify from 'fastify'
 
 import routes from './routes'
-import authentication from './authentication'
+import authentication from './authentication/jwt'
 
 /**
  * Creates an application.
