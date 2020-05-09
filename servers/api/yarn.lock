@@ -895,6 +895,13 @@ flatted@^2.0.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.2.tgz#4575b21e2bcee7434aa9be662f4b7b5f9c2b5138"
   integrity sha512-r5wGx7YeOwNWNlCA0wQ86zKyDLMQr+/RB8xy74M4hTphfmjlijTSSXGuH8rnvKZnfT9i+75zmd8jcKdMR4O6jA==
 
+fluent-schema@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/fluent-schema/-/fluent-schema-1.0.1.tgz#bc98b88fa03569cd91b38636c2b080fa8ae5b786"
+  integrity sha512-l1BpXwKkX/W6RCdnS3/7Pw4qkhRERDT2GBpReMjxzmUYHebUAfbCFGgBVmvPEq79OuP9vRFqqh4mZPjH/y13CA==
+  dependencies:
+    deepmerge "^4.2.2"
+
 forwarded@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
