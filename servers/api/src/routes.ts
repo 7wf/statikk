@@ -1,8 +1,10 @@
 import { FastifyInstance } from 'fastify'
 
+import SignUpController from './controllers/signup.controller'
+
 /**
  * Setups all routes to a `fastify` application.
  */
 export default async function setupRoutes(fastify: FastifyInstance) {
-    fastify.get('/', async () => process.uptime())
+    SignUpController.setup(fastify)
 }
