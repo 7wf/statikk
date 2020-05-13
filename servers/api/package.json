@@ -17,7 +17,7 @@
         "fluent-schema": "^1.0.1",
         "pg": "^7.3.0",
         "reflect-metadata": "^0.1.10",
-        "typeorm": "0.2.24"
+        "typeorm": "0.3.0-rc.19"
     },
     "devDependencies": {
         "@types/bcrypt": "^3.0.0",
