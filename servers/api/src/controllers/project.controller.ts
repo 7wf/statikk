@@ -54,13 +54,11 @@ const showShorthand = (fastify: FastifyInstance): RouteShorthandOptions => ({
 async function show(request: FastifyRequest, reply: FastifyReply<ServerResponse>) {
     const user = request.user as { sub: string }
     const project = await Project.findOneOrFail(request.params.id, {
+        relations: ['owner'],
         select: {
             owner: {
                 id: true,
             },
-        },
-        relations: {
-            owner: true,
         },
     })
 
