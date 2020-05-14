@@ -40,6 +40,10 @@ async function store(request: FastifyRequest, reply: FastifyReply<ServerResponse
     const { email, password } = request.body
     const user = await User.findOne({
         where: { email },
+        select: {
+            id: true,
+            password: true,
+        },
     })
 
     if (!user) {
