@@ -103,7 +103,7 @@ async function create(request: FastifyRequest) {
     return {
         id: project.id,
         name: project.name,
-        owner: project.id,
+        owner: project.owner.id,
         repository: project.repository_url,
     }
 }
