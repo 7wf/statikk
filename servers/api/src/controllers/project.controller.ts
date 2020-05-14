@@ -7,6 +7,32 @@ import { User } from '../entities/user'
 import { Project } from '../entities/project'
 
 /**
+ * The shorthand for GET /projects.
+ */
+const indexShorthand = (fastify: FastifyInstance): RouteShorthandOptions => ({
+    preValidation: fastify.authenticate,
+})
+
+/**
+ * Lists all projects from a user.
+ */
+async function index(request: FastifyRequest) {
+    const authorization = request.user as { sub: string }
+    const user = await User.findOneOrFail(authorization.sub, {
+        relations: ['projects'],
+        select: {
+            projects: {
+                id: true,
+                name: true,
+                repository_url: true,
+            },
+        },
+    })
+
+    return user.projects
+}
+
+/**
  * Shorthand options for `store`.
  */
 export const storeShorthand = (fastify: FastifyInstance): RouteShorthandOptions => ({
@@ -47,6 +73,7 @@ async function create(request: FastifyRequest) {
  * Setups the project controller.
  */
 function setup(fastify: FastifyInstance) {
+    fastify.get('/projects', indexShorthand(fastify), index)
     fastify.post('/projects', storeShorthand(fastify), create)
 }
 
