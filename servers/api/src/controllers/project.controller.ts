@@ -150,7 +150,7 @@ async function remove(request: FastifyRequest, reply: FastifyReply<ServerRespons
  */
 function setup(fastify: FastifyInstance) {
     fastify.get('/projects', indexShorthand(fastify), index)
-    fastify.post('/projects', storeShorthand(fastify), create)
+    fastify.put('/projects', storeShorthand(fastify), create)
 
     fastify.get('/project/:id', showShorthand(fastify), show)
     fastify.delete('/project/:id', removeShorthand(fastify), remove)
