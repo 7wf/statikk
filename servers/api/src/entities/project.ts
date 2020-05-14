@@ -18,6 +18,7 @@ export class Project extends BaseEntity {
     /**
      * The URL to project's repository.
      */
+    @Column()
     repository_url!: string
 
     /**
