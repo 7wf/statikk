@@ -1,4 +1,5 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
+import { Project } from './project'
 
 @Entity()
 export class User extends BaseEntity {
@@ -25,4 +26,11 @@ export class User extends BaseEntity {
      */
     @Column()
     password!: string
+
+    /**
+     * The projects made by this user.
+     */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    @OneToMany((type) => Project, (project) => project.owner)
+    projects!: Project[]
 }
