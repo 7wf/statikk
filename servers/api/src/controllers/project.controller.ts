@@ -91,7 +91,7 @@ async function create(request: FastifyRequest) {
     const userId = (request.user as { sub: string }).sub
     const { name, repository } = request.body
 
-    const user = await User.findOne(userId)
+    const user = await User.findOneOrFail(userId)
     const project = await Project.create({
         name: name,
         owner: user,
