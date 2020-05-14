@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import { FastifyInstance, RouteShorthandOptions, FastifyRequest } from 'fastify'
+import { FastifyInstance, RouteShorthandOptions, FastifyRequest, FastifyReply } from 'fastify'
+import { ServerResponse } from 'http'
 
 import fluentSchema from 'fluent-schema'
 
@@ -30,6 +31,37 @@ async function index(request: FastifyRequest) {
     })
 
     return user.projects
+}
+
+/**
+ * The shorthand for GET /project/:id.
+ */
+const showShorthand = (fastify: FastifyInstance): RouteShorthandOptions => ({
+    preValidation: fastify.authenticate,
+})
+
+/**
+ * Displays a project from a user.
+ */
+async function show(request: FastifyRequest, reply: FastifyReply<ServerResponse>) {
+    const user = request.user as { sub: string }
+    const project = await Project.findOneOrFail(request.params.id, {
+        select: {
+            owner: {
+                id: true,
+            },
+        },
+        relations: {
+            owner: true,
+        },
+    })
+
+    if (project.owner.id !== parseInt(user.sub)) {
+        reply.status(401)
+        throw new Error(`You're not unauthorized to access this resource.`)
+    }
+
+    return Object.assign(project, { owner: undefined }) // hides `owner` field from response
 }
 
 /**
@@ -75,6 +107,8 @@ async function create(request: FastifyRequest) {
 function setup(fastify: FastifyInstance) {
     fastify.get('/projects', indexShorthand(fastify), index)
     fastify.post('/projects', storeShorthand(fastify), create)
+
+    fastify.get('/project/:id', showShorthand(fastify), show)
 }
 
 export default { setup }
