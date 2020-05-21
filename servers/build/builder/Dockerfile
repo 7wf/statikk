@@ -9,4 +9,4 @@ RUN apt-get upgrade -y && apt-get update -y
 COPY src src
 
 # Runs the builder
-CMD [ "python3", "src/build.py" ]
+CMD [ "python3", "-u", "src/build.py" ]
