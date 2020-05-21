@@ -17,11 +17,13 @@
         "fluent-schema": "^1.0.1",
         "pg": "^7.3.0",
         "reflect-metadata": "^0.1.10",
+        "socket.io": "^2.3.0",
         "typeorm": "0.3.0-rc.19"
     },
     "devDependencies": {
         "@types/bcryptjs": "^2.4.2",
         "@types/node": "^13.13.4",
+        "@types/socket.io": "^2.1.6",
         "@typescript-eslint/eslint-plugin": "^2.31.0",
         "@typescript-eslint/parser": "^2.31.0",
         "eslint": "^7.0.0",
