@@ -9,6 +9,11 @@ export const APP_PORT = process.env.APP_PORT || 1337
 export const APP_SECRET = process.env.APP_SECRET || 'secret'
 
 /**
+ * The AQMP connection URL.
+ */
+export const AMQP_CONNECTION_URL = process.env.AMQP_CONNECTION_URL
+
+/**
  * The PostgreSQL hostname.
  */
 export const POSTGRES_HOST = process.env.POSTGRES_HOST
