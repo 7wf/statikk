@@ -12,7 +12,7 @@ import { Project } from '../entities/project'
  */
 function throwUnauthorizedError(reply: FastifyReply<ServerResponse>) {
     reply.status(401)
-    throw new Error(`You're not unauthorized to access this resource.`)
+    throw new Error(`You're not authorized to access this resource.`)
 }
 
 /**
