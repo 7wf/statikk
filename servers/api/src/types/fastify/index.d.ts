@@ -1,6 +1,6 @@
 import { Server, IncomingMessage, ServerResponse } from 'http'
 import { Socket, Server as SocketIOServer } from 'socket.io'
-import { Connection as AMQPConnection } from 'amqplib'
+import { Connection as AMQPConnection, Channel as AMQPChannel } from 'amqplib'
 
 declare module 'fastify' {
     export interface FastifyInstance<
@@ -14,5 +14,9 @@ declare module 'fastify' {
 
         websocket: SocketIOServer
         websocketUsers: Map<string, Socket>
+    }
+
+    export interface FastifyRequest {
+        amqpChannel: AMQPChannel
     }
 }
