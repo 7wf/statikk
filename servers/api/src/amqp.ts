@@ -12,6 +12,8 @@ export default async function amqp(fastify: FastifyInstance) {
         const aqmpConnection = await aqmp.connect(AMQP_CONNECTION_URL)
         console.log('Successfully connected to RabbitMQ.')
 
+        fastify.decorate('amqpConnection', aqmpConnection)
+
         const channel = await aqmpConnection.createChannel()
 
         await channel.assertExchange(LOGS_EXCHANGE, 'fanout', { durable: false })
