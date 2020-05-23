@@ -92,10 +92,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.8.tgz#39fa1c8563bce1077507fea05699437f112ecbcc"
   integrity sha512-WJoiKALUF5exZo0G3T5coauJR2Tmc6rdE9/kgppZVnV6rlUB2dl3gTu2GTNBKhKF6SZ/WFfpEUIGNC/0qvdMWA==
 
-"@types/socket.io@^2.1.6":
-  version "2.1.6"
-  resolved "https://registry.yarnpkg.com/@types/socket.io/-/socket.io-2.1.6.tgz#b8edfebbe643ddd692b368ed77bd95b9cf3172fc"
-  integrity sha512-z1+D0k2arj+6dy9vnOy4/PxT3gmI7/BInzL8Jtbr5ijKOQyvSx+nOUhax+Hw69htpRmEdVNkWZUOVxsvvm1SrQ==
+"@types/socket.io@^2.1.8":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@types/socket.io/-/socket.io-2.1.8.tgz#ffc3aac0163a58bf50a463d50b1baabed91638cc"
+  integrity sha512-NIQfh9WwJuJKlgmby4NgwMpoBOmNPCDgaRNPiLYZBtkbHkszK/9R52B5yGkd5a34rbVdAADuo8FhOS/5AZDemw==
   dependencies:
     "@types/engine.io" "*"
     "@types/node" "*"
