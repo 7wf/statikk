@@ -19,9 +19,9 @@ export default fastifyPlugin(async function amqp(fastify: FastifyInstance) {
         fastify.decorate('amqpConnection', aqmpConnection)
         fastify.decorateRequest('amqpChannel', channel)
 
-        await channel.assertExchange(LOGS_EXCHANGE, 'fanout', { durable: false })
+        await channel.assertExchange(LOGS_EXCHANGE, 'fanout', { durable: true })
 
-        const queue = await channel.assertQueue(LOGS_QUEUE, { exclusive: true })
+        const queue = await channel.assertQueue(LOGS_QUEUE)
         await channel.bindQueue(queue.queue, LOGS_EXCHANGE, '')
 
         await channel.consume(LOGS_QUEUE, (message: ConsumeMessage | null) => {
