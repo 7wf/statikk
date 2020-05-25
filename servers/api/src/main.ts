@@ -44,7 +44,7 @@ export default function createApplication() {
                     })
 
                     if (project && project.owner.id === user.id) {
-                        socket.join(project.repository_url)
+                        socket.join(project.id)
                     }
                 })
             } else {
