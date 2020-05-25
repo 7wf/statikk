@@ -37,7 +37,9 @@ async function run(request: FastifyRequest, reply: FastifyReply<ServerResponse>)
 
     await request.amqpChannel.sendToQueue('builds', Buffer.alloc(0), {
         headers: {
+            action: 'start',
             repository: project.repository_url,
+            'repository-id': project.id,
         },
     })
 
