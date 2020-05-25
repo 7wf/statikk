@@ -7,7 +7,7 @@ import aqmp, { ConsumeMessage } from 'amqplib'
 import { AMQP_CONNECTION_URL } from './utils/environment'
 
 const LOGS_QUEUE = 'build-logs'
-const LOGS_EXCHANGE = 'logs'
+const LOGS_EXCHANGE = 'statikk.build.logs'
 
 export default fastifyPlugin(async function amqp(fastify: FastifyInstance) {
     if (AMQP_CONNECTION_URL) {
@@ -24,7 +24,7 @@ export default fastifyPlugin(async function amqp(fastify: FastifyInstance) {
         const queue = await channel.assertQueue(LOGS_QUEUE, { exclusive: true })
         await channel.bindQueue(queue.queue, LOGS_EXCHANGE, '')
 
-        await channel.consume('build-logs', (message: ConsumeMessage | null) => {
+        await channel.consume(LOGS_QUEUE, (message: ConsumeMessage | null) => {
             if (!message || !message.content) return
             const repository = message.properties.headers['repository']
 
