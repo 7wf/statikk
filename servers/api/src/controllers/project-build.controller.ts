@@ -35,7 +35,7 @@ async function run(request: FastifyRequest, reply: FastifyReply<ServerResponse>)
         throw new Error("You're not allowed to run builds of this project.")
     }
 
-    await request.amqpChannel.sendToQueue('build', Buffer.alloc(0), {
+    await request.amqpChannel.sendToQueue('builds', Buffer.alloc(0), {
         headers: {
             repository: project.repository_url,
         },
