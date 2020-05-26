@@ -146,6 +146,39 @@ async function remove(request: FastifyRequest, reply: FastifyReply<ServerRespons
 }
 
 /**
+ * The shorthand for PATCH /project/:id.
+ */
+const updateShorthand = (fastify: FastifyInstance): RouteShorthandOptions => ({
+    preValidation: fastify.authenticate,
+    schema: {
+        body: fluentSchema.object().prop('name', fluentSchema.string()).prop('repository', fluentSchema.string()),
+    },
+})
+
+/**
+ * Updates a project.
+ */
+async function update(request: FastifyRequest, reply: FastifyReply<ServerResponse>) {
+    const userId = (request.user as { sub: string }).sub
+    const { name, repository } = request.body
+
+    const project = await Project.findOneOrFail(request.params.id, { relations: ['owner'] })
+
+    if (project.owner.id !== parseInt(userId)) {
+        return throwUnauthorizedError(reply)
+    }
+
+    await Project.update(request.params.id, {
+        name: name || project.name,
+        repository_url: repository || project.repository_url,
+    })
+
+    await project.reload()
+
+    return Object.assign(project, { owner: undefined })
+}
+
+/**
  * Setups the project controller.
  */
 function setup(fastify: FastifyInstance) {
@@ -153,6 +186,7 @@ function setup(fastify: FastifyInstance) {
     fastify.put('/projects', storeShorthand(fastify), create)
 
     fastify.get('/project/:id', showShorthand(fastify), show)
+    fastify.patch('/project/:id', updateShorthand(fastify), update)
     fastify.delete('/project/:id', removeShorthand(fastify), remove)
 }
 
