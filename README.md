@@ -1,6 +1,6 @@
 ### :zap: Statikk
 
-> :warning: The project is currently under development. See [**#AQ**](#AQ) section.
+> :warning: The project is currently under development. See [**#QA**](#QA) section.
 
 A service that build and deploys modern static websites.
 
