@@ -87,14 +87,14 @@ async function stop(request: FastifyRequest, reply: FastifyReply<ServerResponse>
  */
 function setup(fastify: FastifyInstance) {
     if (fastify.amqpConnection) {
-        fastify.post('/builds', runShorthand(fastify), run)
+        fastify.post('/build/run', runShorthand(fastify), run)
         fastify.post('/build/stop', stopShorthand(fastify), stop)
     } else {
         const serviceUnavailable = async () => {
             throw new Error('The build service is unavailable')
         }
 
-        fastify.post('/builds', serviceUnavailable)
+        fastify.post('/build/run', serviceUnavailable)
         fastify.post('/build/stop', serviceUnavailable)
     }
 }
