@@ -7,6 +7,7 @@ import ProjectController from './controllers/project.controller'
 import ProjectBuildController from './controllers/project-build.controller'
 
 import UserController from './controllers/user.controller'
+import GithubAuthenticationController from './controllers/github-authentication.controller'
 
 /**
  * Setups all routes to a `fastify` application.
@@ -16,6 +17,8 @@ export default async function setupRoutes(fastify: FastifyInstance) {
     SessionController.setup(fastify)
 
     UserController.setup(fastify)
+
+    GithubAuthenticationController.setup(fastify)
 
     ProjectController.setup(fastify)
     ProjectBuildController.setup(fastify)
